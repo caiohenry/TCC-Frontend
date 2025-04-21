@@ -1,0 +1,166 @@
+<app-header #header></app-header>
+
+
+<div class="navigation-page">
+    <div class="telemed-body">
+        <div class="content-left">
+            <h1>PLATAFORMA DE DIAGNÓSTICO POR IA</h1>
+            <p>Diagnóstico de tumores cerebrais utilizando Inteligência Artificial.</p>
+            <p>Processamento de imagens médicas com Redes Neurais Convolucionais (CNN).</p>
+            <p>Resultados rápidos e NÃO tão precisos por enquanto.</p>
+            <div style="display: flex;  margin-top: 1rem;">
+              <ng-button typeBtn="add" label="Teste Gratuito" iconName="assignment" [prefixIcon]="true"
+              (btnClick)="importVisible = true"></ng-button>
+            </div>
+            
+            
+          </div>
+          
+          <div class="content-right">
+            <div class="pdf-section">
+              <h2>Artigo relacionado</h2>
+              
+              <div class="pdf-viewer">
+                <iframe src="pdf/TCC.pdf" width="100%" height="400px"></iframe>
+              </div>
+
+              <div class="btn-download">
+                <ng-button typeBtn="info-document" label="Download do Artigo" iconName="download" [prefixIcon]="true"
+              (btnClick)="downloadPdf()"></ng-button>
+              </div>
+              
+            </div>
+          </div>
+          
+      </div>
+      
+</div>
+
+<!-- Dialog for Address Finished -->
+<app-modal
+  [visible]="importVisible"
+  [width]="'60%'"
+  [closeButton]="true"
+  [qtdOptions]="2"
+  (close)="importVisible = false"
+>
+  <!-- Header -->
+  <ng-template #header>
+    <app-page-title
+      icon="check"
+      title="Insira uma imagem"
+    >
+    </app-page-title>
+  </ng-template>
+
+  <!-- Body -->
+  <ng-template #body>
+    <div class="container-import-dialog">
+
+      <div class="card-alert">
+        <h1>Atenção!</h1>
+        <li>Insira apenas uma imagem por teste.</li>
+        <li>Apenas imagens com a extensão <i>.png</i> ou <i>.jpg</i> são suportadas.</li>
+
+      </div>
+
+      @if(cnis_client_select) {
+
+      } @else {
+
+      <div class="dialog-content-primary" appDragAndDrop (fileDropped)="onFileDropped($event)">
+
+
+        <lord-icon src="ja.json" trigger="loop" style="width:250px;height:250px"
+          colors="secundary:#121331,primary:#3a3347"></lord-icon>
+
+        <!-- Search button -->
+        <button type="submit" class="btn-form-add" (click)="fileInput.click()">
+          <i class="i-search"></i>
+          <p class="text-btn-form">Procurar</p>
+        </button>
+
+        <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)"
+          accept=".png, .jpg" />
+        <p style="font-size: 20px; padding: 10px">ou arraste um arquivo até aqui</p>
+
+      </div>
+
+    }
+
+    </div>
+  </ng-template>
+
+  <!-- Body -->
+  <ng-template #options>
+
+    <ng-button typeBtn="outline-delete" label="Cancelar" iconName="close" [prefixIcon]="true" (btnClick)="{}"></ng-button>
+    <ng-button typeBtn="outline-confirm" label="Enviar" iconName="check" [prefixIcon]="true" (btnClick)="sendImageToTest()"></ng-button>
+
+  </ng-template>
+
+  </app-modal>
+
+
+
+
+  <!-- Dialog for Address Finished -->
+  @if(dataResponse) {
+<app-modal
+[visible]="imageTest"
+[width]="'40%'"
+[closeButton]="true"
+[qtdOptions]="2"
+(close)="imageTest = false"
+>
+<!-- Header -->
+<ng-template #header>
+  <app-page-title
+    icon="check"
+    [title]="dataResponse['predicted_class']"
+  >
+  </app-page-title>
+</ng-template>
+
+<!-- Body -->
+<ng-template #body>
+
+  
+  <div class="container-import-dialog">
+
+    @if(dataResponse['predicted_class'] == "Possui Câncer") {
+
+      <p>
+        Seu resultado indica a necessidade de investigação médica. Lembre-se: um diagnóstico precoce é um passo crucial para o tratamento. 
+        Você não está sozinho(a) — a medicina avança a cada dia, e há esperança.
+      </p>
+
+      <p>"A coragem não é a ausência do medo, mas a decisão de seguir em frente."</p>
+
+    } @else if (dataResponse['predicted_class'] == "Não Possui Câncer") {
+
+      <p>
+        Seu resultado <strong>não</strong> indica a presença de câncer. Continue cuidando da sua saúde com check-ups regulares, 
+        alimentação balanceada e hábitos saudáveis. Celebremos a vida juntos!
+      </p>
+      
+      <p>"A prevenção é o melhor caminho para um futuro brilhante."</p>
+
+    }
+
+  </div>
+
+</ng-template>
+
+<!-- Body -->
+<ng-template #options>
+
+  <ng-button typeBtn="outline-delete" label="Cancelar" iconName="close" [prefixIcon]="true" (btnClick)="imageTest = false"></ng-button>
+
+  <ng-button typeBtn="outline-confirm" label="Testar Novamente" iconName="assignment" [prefixIcon]="true" (btnClick)="{}"></ng-button>
+
+</ng-template>
+
+</app-modal>
+
+  }

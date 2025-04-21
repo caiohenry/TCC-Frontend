@@ -1,0 +1,110 @@
+.navigation-page {
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+    height: 90vh;
+    width: 99vw;
+    overflow-x: hidden;
+}
+
+.telemed-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 10%;
+    background: white;
+    gap: 40px;
+  }
+  
+  .content-left {
+    flex: 1;
+
+  }
+  
+  .content-left h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .content-left p {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+  
+  
+
+  .content-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pdf-section {
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .pdf-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .pdf-viewer {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+  }
+  
+  .btn-download {
+    display: inline-block;
+  }
+  
+
+
+  ::ng-deep .p-component-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .container-import-dialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    gap: 30px;
+  
+    .card-alert {
+      display: flex;
+      background-color: #FFF5DA;
+      width: 100%;
+      padding: 20px;
+      flex-direction: column;
+      border: 1px solid #FFFBF1;
+      font-size: 1rem;
+      border-radius: 5px;
+      gap: 10px;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    
+      li {
+        font-size: 20px;
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .dialog-content-primary {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #ccc;
+    padding: 20px;
+  }
+  
+  

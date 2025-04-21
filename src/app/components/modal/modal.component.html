@@ -1,0 +1,30 @@
+<!-- Modal -->
+<div class="modal" [ngClass]="{'show': visible}">
+
+    <!-- Content -->
+    <div class="modal-content" [style]="{ width: width }">
+
+        <!-- Header -->
+        <div class="modal-header">
+            <ng-template [ngTemplateOutlet]="headerTemplateRef"></ng-template>
+            @if(closeButton) {
+                <i class="material-icons button-close" (click)="closeModal()">close</i>
+            }
+            
+        </div>
+
+        <!-- Body -->
+        <div class="modal-body">
+
+            <ng-template [ngTemplateOutlet]="bodyTemplateRef"></ng-template>
+
+            <!-- Button Options -->
+            <div class="modal-options" [ngStyle]="qtdOptions > 1 ? { 'justify-content': 'space-between' } : { 'justify-content': 'flex-end' }">
+                <ng-template [ngTemplateOutlet]="optionTemplateRef"></ng-template>
+            </div>
+            
+        </div>
+
+    </div>
+
+</div>
