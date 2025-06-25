@@ -1,23 +1,20 @@
 <app-header #header></app-header>
 
-
 <div class="navigation-page">
-    <div class="telemed-body">
-        <div class="content-left">
-            <h1>PLATAFORMA DE DIAGNÓSTICO POR IA</h1>
-            <p>Diagnóstico de tumores cerebrais utilizando Inteligência Artificial.</p>
-            <p>Processamento de imagens médicas com Redes Neurais Convolucionais (CNN).</p>
-            <p>Resultados rápidos e NÃO tão precisos por enquanto.</p>
-            <div style="display: flex;  margin-top: 1rem;">
-              <ng-button typeBtn="add" label="Teste Gratuito" iconName="assignment" [prefixIcon]="true"
-              (btnClick)="importVisible = true"></ng-button>
-            </div>
-            
-            
-          </div>
+  <div class="telemed-body">
+    <div class="content-left">
+      <h1>PLATAFORMA DE DIAGNÓSTICO POR IA</h1>
+      <p>Diagnóstico de tumores cerebrais utilizando Inteligência Artificial.</p>
+      <p>Processamento de imagens médicas com Redes Neurais Convolucionais (CNN).</p>
+      <p>Resultados rápidos e NÃO tão precisos por enquanto.</p>
+      <div style="display: flex;  margin-top: 1rem;">
+        <ng-button typeBtn="add" label="Teste Gratuito" iconName="assignment" [prefixIcon]="true"
+        (btnClick)="importVisible = true"></ng-button>
+      </div>
+    </div>
           
-          <div class="content-right">
-            <div class="pdf-section">
+    <div class="content-right">
+      <div class="pdf-section">
               <h2>Artigo relacionado</h2>
               
               <div class="pdf-viewer">
@@ -128,7 +125,7 @@
   
   <div class="container-import-dialog">
 
-    @if(dataResponse['predicted_class'] == "Possui Câncer") {
+    @if(dataResponse['predicted_class'] == "Presença de Tumor") {
 
       <p>
         Seu resultado indica a necessidade de investigação médica. Lembre-se: um diagnóstico precoce é um passo crucial para o tratamento. 
@@ -137,10 +134,10 @@
 
       <p>"A coragem não é a ausência do medo, mas a decisão de seguir em frente."</p>
 
-    } @else if (dataResponse['predicted_class'] == "Não Possui Câncer") {
+    } @else if (dataResponse['predicted_class'] == "Ausência de Tumor") {
 
       <p>
-        Seu resultado <strong>não</strong> indica a presença de câncer. Continue cuidando da sua saúde com check-ups regulares, 
+        Seu resultado <strong>não</strong> indica a presença de tumor. Continue cuidando da sua saúde com check-ups regulares, 
         alimentação balanceada e hábitos saudáveis. Celebremos a vida juntos!
       </p>
       
@@ -157,7 +154,7 @@
 
   <ng-button typeBtn="outline-delete" label="Cancelar" iconName="close" [prefixIcon]="true" (btnClick)="imageTest = false"></ng-button>
 
-  <ng-button typeBtn="outline-confirm" label="Testar Novamente" iconName="assignment" [prefixIcon]="true" (btnClick)="{}"></ng-button>
+  <ng-button typeBtn="outline-confirm" label="Testar Novamente" iconName="assignment" [prefixIcon]="true" (btnClick)="newImageTest()"></ng-button>
 
 </ng-template>
 

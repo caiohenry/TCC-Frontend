@@ -105,5 +105,12 @@ export class NavigationPageComponent {
     });
   }
 
+  newImageTest() {
+    this.imageTest = false;
+    this.dataResponse = null;
+    this.importVisible = true;
+    this.titleImageTest = "";
+    this.cnis_client_select = null;
+  }
 
 }
